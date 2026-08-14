@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    {% if amount %}
+        <p>{{ amount }}</p>
+    {% endif %}
+
+    {% if messages %}
+        <p>{{ messages }}</p>
+    {% endif %}
+
+    {% if fish %}
+        <p>{{ fish }}</p>
+    {% endif %}
+
+    {% if dog %}
+        <p>{{ dog }}</p>
+    {% endif %}
+
+    {% if laundry %}
+        <p>{{ laundry.shirts() }}</p>
+        <p>{{ laundry.pants() }}</p>
+    {% endif %}
+    </body>
+</html>
