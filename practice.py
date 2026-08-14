@@ -164,3 +164,9 @@ def chores():
 if __name__ == "__main__":
     log.info("the system ran ✔️")
     app.run(debug=True)
+
+
+
+# git add .
+# git commit -m "message"
+# git push
