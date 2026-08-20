@@ -16,5 +16,6 @@ def order():
         log.exception("❌ template not found-check you're folder name")
     except TemplateSyntaxError:
         log.exception("❌failed to syntax with the termplate: check index.html file")
+
 if __name__ == "__main__":
     app.run()
