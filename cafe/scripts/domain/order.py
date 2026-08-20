@@ -37,11 +37,16 @@ class medium(service):
     def text(self) -> str:
         return f"you paied {self.money} for {self.size} size"
 
-class small(service):
+class large(service):
     def __init__(self, size: str , money: int) -> None:
         self.size = size
         self.money = money
     def text(self) -> str:
         return f"you paied {self.money} for {self.size} size"
 
-    
+
+
+def main():
+    size_small = small
+    size_medium = medium
+    size_large = large
