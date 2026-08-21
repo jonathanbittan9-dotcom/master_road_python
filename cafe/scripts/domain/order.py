@@ -1,11 +1,12 @@
 from abc import ABC , abstractmethod 
-from domain.menu import Order
-from domain.logs_setup import log
+from scripts.domain.menu import Order
+from scripts.domain.logs_setup import log
+
 class service(ABC):
     def __init__(self, size: str , money: int) -> None:
         self.size = size
         self.money = money
-    def __str__(self) -> int:
+    def __repr__(self) -> dict:
         class_name = type(self).__name__
         if class_name == "small":
             self.money = 6
@@ -44,9 +45,9 @@ class large(service):
     def text(self) -> str:
         return f"you paied {self.money} for {self.size} size"
 
+SIZES = {
+    "small": small , 
+    "medium": medium ,
+    "large": large , 
+}    
 
-
-def main():
-    size_small = small
-    size_medium = medium
-    size_large = large
