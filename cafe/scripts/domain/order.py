@@ -1,12 +1,10 @@
-from abc import ABC , abstractmethod 
+from abc import ABC , abstractmethod
 from scripts.domain.menu import Order
 from scripts.domain.logs_setup import log
 
 class service(ABC):
     def __init__(self, size: str , money: int) -> None:
         self.size = size
-        self.money = money
-    def __repr__(self) -> dict:
         class_name = type(self).__name__
         if class_name == "small":
             self.money = 6
@@ -16,7 +14,7 @@ class service(ABC):
             self.money = 13
         else:
             log.exception("❌TypeError: one or more of the classes name is incorrect")
-            self.money = None
+            self.money = money
     def sizeof(self):
         self.size = type(self).__name__
     @abstractmethod
@@ -26,28 +24,25 @@ class service(ABC):
 
 class small(service):
     def __init__(self, size: str , money: int) -> None:
-        self.size = size
-        self.money = money
+        super().__init__(size, money)
     def text(self) -> str:
         return f"you paied {self.money} for {self.size} size"
 
 class medium(service):
     def __init__(self, size: str , money: int) -> None:
-        self.size = size
-        self.money = money
+        super().__init__(size, money)
     def text(self) -> str:
         return f"you paied {self.money} for {self.size} size"
 
 class large(service):
     def __init__(self, size: str , money: int) -> None:
-        self.size = size
-        self.money = money
+        super().__init__(size, money)
     def text(self) -> str:
         return f"you paied {self.money} for {self.size} size"
 
 SIZES = {
-    "small": small , 
+    "small": small ,
     "medium": medium ,
-    "large": large , 
-}    
+    "large": large ,
+}
 

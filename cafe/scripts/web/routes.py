@@ -10,7 +10,7 @@ def menu():
     from scripts.domain.menu import main
 
     try:
-        reponse = render_template("index.html" , menu = main)
+        reponse = render_template("index.html" , menu = main())
         log.info("😋returned the menu of the cafe to the user")
         return reponse
     except TemplateNotFound:

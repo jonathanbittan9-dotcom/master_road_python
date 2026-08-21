@@ -14,7 +14,7 @@ class Order:
 
 
 def main():
-    order = Order(menu=["small", "medium", "large"])
+    return Order(menu=["small", "medium", "large"])
 
 
 if __name__ == "__main__":
