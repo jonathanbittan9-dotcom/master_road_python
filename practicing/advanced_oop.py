@@ -23,3 +23,9 @@ class user_setup():
 
 
 print(user_setup)
+
+u = user_setup()
+u.Email = "a@b.com"
+print(u.Email)
+
+# u.discord = 5   # should raise ValueError: value is not a str.❌
