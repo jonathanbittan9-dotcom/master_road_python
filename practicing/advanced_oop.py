@@ -21,7 +21,6 @@ class user_setup():
     Email = user()
     discord = user()
 
-
 print(user_setup)
 
 u = user_setup()
