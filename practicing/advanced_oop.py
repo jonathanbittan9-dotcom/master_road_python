@@ -5,11 +5,24 @@ from dataclasses import dataclass
 
 class user():
     def __set_name__(self, owner, name) -> None:
+        # Called once per descriptor when it's defined in user_setup.
+        # (owner=user_setup, name="Email" or "discord")
+        # Stores the private key we'll use to stash data on instances.
         self.private_name = "_" + name
 
     def __get__(self, instance, owner) -> str:
+        # Called when you READ the attribute.
+        #   instance = the object you accessed it on (e.g. u)
+        #   owner    = the class it's defined on (e.g. user_setup)
+        # If instance is None it means you accessed it on the CLASS
+        # (user_setup.Email, not u.Email) — there's no object to read
+        # data from, so by convention we return self, the descriptor
+        # object sitting in the class's __dict__:
+        #   user_setup.Email is user_setup.__dict__["Email"]  # True
         if instance is None:
             return self
+        # Otherwise read the stored value off the instance under the
+        # private name, e.g. getattr(u, "_Email") -> "a@b.com"
         return getattr(instance, self.private_name)
 
     def __set__(self, instance, value) -> None:
