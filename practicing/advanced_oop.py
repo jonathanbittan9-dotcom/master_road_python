@@ -23,6 +23,16 @@ class user():
             return self
         # Otherwise read the stored value off the instance under the
         # private name, e.g. getattr(u, "_Email") -> "a@b.com"
+        #
+        # getattr(instance, private_name) "GETS" a value FROM the
+        # instance by looking up the attribute name:
+        #   getattr(u, "_Email")
+        #   |      |     |
+        #   |      |     └──── the attribute name to look up
+        #   |      └────────── the instance to get it FROM
+        #   └───────────────── "get"
+        # And `return` hands that value back out, so `u.Email`
+        # evaluates to whatever was gotten, e.g. "a@b.com".
         return getattr(instance, self.private_name)
 
     def __set__(self, instance, value) -> None:
