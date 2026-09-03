@@ -10,6 +10,12 @@ class user():
         # Stores the private key we'll use to stash data on instances.
         self.private_name = "_" + name
 
+    def __set__(self, instance, value) -> None:
+        if not isinstance(value , str):
+            raise ValueError(f"value is not a str.❌")
+        setattr(instance, self.private_name, value)
+    
+
     def __get__(self, instance, owner) -> str:
         # Called when you READ the attribute.
         #   instance = the object you accessed it on (e.g. u)
@@ -35,10 +41,7 @@ class user():
         # evaluates to whatever was gotten, e.g. "a@b.com".
         return getattr(instance, self.private_name)
 
-    def __set__(self, instance, value) -> None:
-        if not isinstance(value , str):
-            raise ValueError(f"value is not a str.❌")
-        setattr(instance, self.private_name, value)
+    
 
 class user_setup():
     Email = user()
@@ -48,6 +51,6 @@ print(user_setup)
 
 u = user_setup()
 u.Email = "a@b.com"
-print(u.Email)
+print(u.Email)=
 
 # u.discord = 5   # should raise ValueError: value is not a str.❌
