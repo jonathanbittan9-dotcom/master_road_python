@@ -10,36 +10,31 @@
 # Test your code at the bottom.
 
 class PositiveNumber:
-    def __set_name(self , positive:int) -> None:
-        self.positive = "_" + positive
-    
-    def __set__(self , instance ,value) -> None:
-        if not isinstance(value , int):
-            raise ValueError f"{value} is not an int."
-        setattr(instance ,self.positive , value=)
-    
-    def __get__(self, instance , owner) -> None:
+    def __set_name__(self, owner, name):
+        self.name = "_" + name
+
+    def __set__(self, instance, value):
+        if not isinstance(value, (int, float)):
+            raise ValueError(f"{value} is not a number.")
+        if value <= 0:
+            raise ValueError(f"{value} must be greater than 0.")
+        setattr(instance, self.name, value)
+
+    def __get__(self, instance, owner):
         if instance is None:
             return self
-        getattr(instance , self.positive)
-
-        
-
-
+        return getattr(instance, self.name)
 
 
 class Product:
     price = PositiveNumber()
     stock = PositiveNumber()
+    def __init__(self, name, price, stock , ):
+        self.name = name    
+        self.price = price
+        self.stock = stock
 
-P = Product()
-
-P.price 
-    def __init__(self, name, price, stock):
-        self.name = name
-        # Initialize price and stock here
-        pass
-
+    
 
 # --- Test your code ---
 if __name__ == "__main__":
