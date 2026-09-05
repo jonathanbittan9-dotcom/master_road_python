@@ -45,11 +45,21 @@
 # --- (write your code below this line) ---
 
 
-# ======================================================================
-# PART 3 — Test (do not modify)
-# ======================================================================
+class Color:
+    def __set_name__(self , color):
+        self.color = "_" + color
+    def __set__(self ,instance , value):
+        if value is not {"red" , "green" , "blue"}:
+            raise ValueError(f"{value} is not a valied color")
+        
+        setattr(instance , self.name , value)
+    def __get__(self , instance , owner):
+        if instance is None:
+            return self
+        
+        getattr(instance , self.name , value)
 
-class 
+
 
 
 if __name__ == "__main__":
