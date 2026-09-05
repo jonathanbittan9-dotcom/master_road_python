@@ -46,18 +46,23 @@
 
 
 class Color:
-    def __set_name__(self , color):
-        self.color = "_" + color
-    def __set__(self ,instance , value):
-        if value is not {"red" , "green" , "blue"}:
-            raise ValueError(f"{value} is not a valied color")
-        
-        setattr(instance , self.name , value)
-    def __get__(self , instance , owner):
+    def __set_name__(self, owner, name):
+        self.name = "_" + name
+    def __set__(self, instance, value):
+        if value not in {"red", "green", "blue"}:
+            raise ValueError(f"{value} is not a valid color")
+        setattr(instance, self.name, value)
+    def __get__(self, instance, owner):
         if instance is None:
             return self
-        
-        getattr(instance , self.name , value)
+        return getattr(instance, self.name)
+
+class Shape:
+    shade = Color()
+    name = Color()
+    def __init__(self, name, shade):
+        self.color = name
+        self.shade = shade
 
 
 
