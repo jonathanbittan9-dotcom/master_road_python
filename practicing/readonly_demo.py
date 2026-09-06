@@ -34,7 +34,7 @@ class ReadOnly:
 
 class User:
     created_at = ReadOnly()
-
+=
     def __init__(self, name, created_at):
         self.name = name
         self.created_at = created_at

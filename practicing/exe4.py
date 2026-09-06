@@ -59,12 +59,16 @@ class range:
         self.private_name = "_" + private_name
     def __set__(self , instance , value):
         if self.private_name in instance.__dict__:
-            raise AttributeError("already has value")
+            raise AttributeError(f"{self.private_name} FROZE -> ATTRIBUTE ERROR! , CANNOT CHANGE THE VALUE!")
     
         setattr(instance , self.private_name , value)
+    def __get__(self , instance , owner):
+        if instance is None:
+            return self
+
 if __name__ == "__main__" and False:  # toggle to False when ready
     pass
-=
+
 if __name__ == "__main__":
     # --- ReadOnly ---
     u = User("Ari", 12345)
