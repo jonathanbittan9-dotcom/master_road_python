@@ -59,11 +59,12 @@ class range:
         self.private_name = "_" + private_name
     def __set__(self , instance , value):
         if self.private_name in instance.__dict__:
-            raise ValueError("already has value")
+            raise AttributeError("already has value")
     
+        setattr(instance , self.private_name , value)
 if __name__ == "__main__" and False:  # toggle to False when ready
     pass
-
+=
 if __name__ == "__main__":
     # --- ReadOnly ---
     u = User("Ari", 12345)
