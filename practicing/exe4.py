@@ -55,22 +55,30 @@
 
 
 class range:
-    def __set_name__(self , private_name):
+    def __set_name__(self , private_name , user_id):
         self.private_name = "_" + private_name
+        self.user_id = "_" + user_id
     def __set__(self , instance , value):
         if self.private_name in instance.__dict__:
             raise AttributeError(f"{self.private_name} FROZE -> ATTRIBUTE ERROR! , CANNOT CHANGE THE VALUE!")
-    
+        if self.user_id in instance.__dict__:
+            raise AttributeError(f"{self.private_name} FROZE -> ATTRIBUTE ERROR! , CANNOT CHANGE THE VALUE!")
         setattr(instance , self.private_name , value)
     def __get__(self , instance , owner):
         if instance is None:
             return self
 
+class User:
+    user = range()
+    id_user = range()
+    def __init__(self , user , id_user):
+        self.user = user
+        self.id = id_user
+
 if __name__ == "__main__" and False:  # toggle to False when ready
     pass
 
-if __name__ == "__main__":
-    # --- ReadOnly ---
+if __name__ == "__main__":=
     u = User("Ari", 12345)
     print("created_at is set:", u.created_at)
     try:
@@ -92,4 +100,4 @@ if __name__ == "__main__":
             setattr(t, "temperature", bad)
             print(f"accepted {bad!r} (BAD)")
         except ValueError:
-            print(f"rejected {bad!r} (GOOD)")
+            print(f"rejected {bad!r} (GOOD)"),
