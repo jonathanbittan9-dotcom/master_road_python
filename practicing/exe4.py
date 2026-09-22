@@ -78,7 +78,7 @@ class User:
 if __name__ == "__main__" and False:  # toggle to False when ready
     pass
 
-if __name__ == "__main__":=
+if __name__ == "__main__":
     u = User("Ari", 12345)
     print("created_at is set:", u.created_at)
     try:
